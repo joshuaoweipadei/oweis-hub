@@ -4,8 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: 'Showcaser',
-  description: 'Showcaes and discover remarkable developer projects',
+  title: 'Oweis Project Hub',
+  description: 'My portfolio to showcase all my latest project remarkable projects',
 }
 
 export default function RootLayout({

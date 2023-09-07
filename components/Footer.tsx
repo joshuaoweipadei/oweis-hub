@@ -34,7 +34,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-12">
+        {/* <div className="flex flex-wrap gap-12">
           <FooterColumn title={footerLinks[0].title} links={footerLinks[0].links} />
 
           <div className="flex-1 flex flex-col gap-4">
@@ -50,7 +50,7 @@ const Footer = () => {
           </div>
           
           <FooterColumn title={footerLinks[6].title} links={footerLinks[6].links} />
-        </div>
+        </div> */}
       </div>
 
       <div className="flexBetween footer_copyright">

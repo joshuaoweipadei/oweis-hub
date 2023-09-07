@@ -29,8 +29,8 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
           <Link href={renderLink()}>
             <Image
               src={projectDetails?.createdBy?.avatarUrl}
-              width={80}
-              height={80}
+              width={50}
+              height={50}
               alt="profile"
               className="rounded-full"
             />

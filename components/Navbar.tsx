@@ -31,8 +31,9 @@ const Navbar = async () => {
       <div className='flexCenter gap-4'>
         {session?.user ? (
           <>
-            <Link href={"/create-project"}>
-              Share Work
+            <Link href={"/create-project"} className='flexCenter edit-action_btn gap-2'>
+              <Image src="/plus-round.svg" width={15} height={15} alt="edit" />
+              <span>Post Project</span>
             </Link>
 
             <ProfileMenu session={session} />

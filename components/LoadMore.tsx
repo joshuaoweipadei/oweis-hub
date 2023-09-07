@@ -42,7 +42,7 @@ const LoadMore = ({
         <Button title="First Page" handleClick={() => handleNavigation('prev')} />
       )}
       {hasNextPage && (
-        <Button title="Next Shots" handleClick={() => handleNavigation('next')} />
+        <Button title="Next Page" handleClick={() => handleNavigation('next')} />
       )}
     </div>
   )

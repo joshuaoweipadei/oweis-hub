@@ -34,8 +34,8 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
           {session?.user?.image && (
             <Image
               src={session.user.image}
-              width={40}
-              height={40}
+              width={44}
+              height={44}
               className="rounded-full"
               alt="user profile image"
             />
@@ -71,12 +71,6 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
             </div>
 
             <div className="flex flex-col gap-3 pt-7 items-start w-full">
-              <Menu.Item>
-                <Link href={`/profile/${session?.user?.id}`} className="text-sm">Work Preferences</Link>
-              </Menu.Item>
-              <Menu.Item>
-                <Link href={`/profile/${session?.user?.id}`} className="text-sm">Settings</Link>
-              </Menu.Item>
               <Menu.Item>
                 <Link href={`/profile/${session?.user?.id}`} className="text-sm">Profile</Link>
               </Menu.Item>

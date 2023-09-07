@@ -1,4 +1,5 @@
 import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
 import { NextAuthOptions, User } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
@@ -62,7 +63,7 @@ export const authOptions: NextAuthOptions = {
         
         // if they dont exist, create them
         if(!userExists) {
-          return false;
+          return redirect("/");
         }
         // if(!userExists.user) {
         //   await createUser(

@@ -61,16 +61,16 @@ export const authOptions: NextAuthOptions = {
         const userExists = await getUser(user?.email as string) as { user?: UserProfile }
         
         // if they dont exist, create them
-        // if(!userExists) {
-        //   return false;
-        // }
-        if(!userExists.user) {
-          await createUser(
-            user.name as string,
-            user.email as string,
-            user.image as string,
-          )
+        if(!userExists) {
+          return false;
         }
+        // if(!userExists.user) {
+        //   await createUser(
+        //     user.name as string,
+        //     user.email as string,
+        //     user.image as string,
+        //   )
+        // }
         return true;
       } catch (error: any) {
         console.log(error, "auth error");

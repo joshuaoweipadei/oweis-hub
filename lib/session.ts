@@ -61,10 +61,13 @@ export const authOptions: NextAuthOptions = {
         // get the user if they exist
         const userExists = await getUser(user?.email as string) as { user?: UserProfile }
         
-        // if they dont exist, create them
-        if(!userExists) {
-          return redirect("/");
+        // this line to prevent from creating new users
+        if(!userExists?.user) {
+          // return redirect("/");
+          return false;
         }
+
+        // if they dont exist, create them
         // if(!userExists.user) {
         //   await createUser(
         //     user.name as string,
@@ -72,6 +75,7 @@ export const authOptions: NextAuthOptions = {
         //     user.image as string,
         //   )
         // }
+
         return true;
       } catch (error: any) {
         console.log(error, "auth error");

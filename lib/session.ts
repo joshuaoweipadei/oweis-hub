@@ -62,8 +62,8 @@ export const authOptions: NextAuthOptions = {
         const userExists = await getUser(user?.email as string) as { user?: UserProfile }
         
         // this line to prevent from creating new users
-        if(!userExists?.user) {
-          return redirect("/")
+        if(!userExists) {
+          return redirect("/");
         }
 
         // if they dont exist, create them

@@ -63,7 +63,8 @@ export const authOptions: NextAuthOptions = {
         
         // this line to prevent from creating new users
         if(!userExists) {
-          return redirect("/");
+          // return redirect("/");
+          return false;
         }
 
         // if they dont exist, create them

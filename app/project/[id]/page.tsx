@@ -90,12 +90,12 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
 
       <section className="flexCenter w-full gap-8 mt-28">
         <span className="w-full h-0.5 bg-light-white-200" />
-        <Link href={renderLink()} className="min-w-[82px] h-[20px]">
+        <Link href={renderLink()} className="min-w-[180px] h-[70px]">
           <Image
-            src={"/logo.svg"}
+            src={"/logo-black.svg"}
             className=""
-            width={82}
-            height={20}
+            width={180}
+            height={70}
             alt="profile image"
           />
         </Link>

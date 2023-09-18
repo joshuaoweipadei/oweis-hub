@@ -4,8 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: 'Oweis Project Hub',
-  description: 'My portfolio to showcase all my latest project remarkable projects',
+  title: 'OweisHub',
+  description: 'OweisHub is was created by Oweipadei Joshua Bayefa to showcase his remarkable projects to prospective clients',
 }
 
 export default function RootLayout({

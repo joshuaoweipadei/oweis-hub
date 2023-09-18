@@ -7,6 +7,7 @@ type Props = {
   state: string;
   filters: Array<string>;
   setState: (value: string) => void;
+  error?: string
 }
 
 const CustomMenu = ({
@@ -14,9 +15,10 @@ const CustomMenu = ({
   state,
   filters,
   setState,
+  error
 }: Props) => {
   return (
-    <div className="flexStart flex-col w-full gap-7 relative">
+    <div className="flex justify-start items-start flex-col w-full gap-7 relative">
       <label htmlFor={title} className='w-full text-gray-100'>{title}</label>
       <Menu as="div" className="self-start relative">
         <div>
@@ -56,6 +58,7 @@ const CustomMenu = ({
           </Menu.Items>
         </Transition>
       </Menu>
+      {error && <div className="text-xs text-red-600">{error}</div>}
     </div>
   )
 }

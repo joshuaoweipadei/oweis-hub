@@ -47,9 +47,23 @@ export const createUser = (name: string, email: string, avatarUrl: string) => {
 // upload image to cloudinary
 export const uploadImage = async (imagePath: string) => {
   try {
-    const res = await fetch(`${serverUrl}/api/upload`, {
+    const res = await fetch(`${serverUrl}/api/cloudinary/upload`, {
       method: 'POST',
       body: JSON.stringify({ path: imagePath })
+    });
+
+    return res.json();
+  } catch (error) {
+    throw error;
+  }
+}
+
+// upload image to cloudinary
+export const removeImage = async (public_id: string) => {
+  try {
+    const res = await fetch(`${serverUrl}/api/cloudinary/remove`, {
+      method: 'POST',
+      body: JSON.stringify({ public_id: public_id })
     });
 
     return res.json();
@@ -77,7 +91,7 @@ export const createNewProject = async (form: ProjectForm, creatorId: string, tok
 }
 
 // update project
-export const updateProject = async (form: ProjectForm, projectId: string, token: string) => {
+export const updateProject = async (form: ProjectForm, previousImage: string, projectId: string, token: string) => {
   function isBase64DataURL(value: string) {
     const base64Regex = /^data:image\/[a-z]+;base64,/;
     return base64Regex.test(value);
@@ -88,6 +102,14 @@ export const updateProject = async (form: ProjectForm, projectId: string, token:
   const isUploadingNewImage = isBase64DataURL(form.image);
 
   if(isUploadingNewImage) {
+    const match = previousImage.match(/\/([^/]+\/[^/]+)\.jpg$/);
+    if(match) {
+      const extractedImagePublicId = match[1];
+      // remove previous image from cloudinary
+      await removeImage(extractedImagePublicId);
+    }
+
+    // add new uploaded image to cloudinary
     const imageUrl = await uploadImage(form.image);
     if(imageUrl.url) {
       updatedForm = { ...updatedForm, image: imageUrl.url };
@@ -113,14 +135,12 @@ export const deleteProject = (id: string, token: string) => {
 // get all projects
 export const getAllProjects = (endcursor?: string) => {
   client.setHeader('x-api-key', apiKey);
-
   return makeGraphQLRequest(projectCollectionQuery, { endcursor });
 }
 
 // get searched projects
 export const getSearchedProjects = (category?: string, endcursor?: string) => {
   client.setHeader('x-api-key', apiKey);
-console.log(category, "caat")
   return makeGraphQLRequest(projectsSearchQuery, { category, endcursor });
 }
 

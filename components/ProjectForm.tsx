@@ -16,9 +16,18 @@ type Props = {
   project?: ProjectInterface
 }
 
+interface FormState {
+  title: string;
+  description: string;
+  liveSiteUrl: string;
+  githubUrl: string;
+  category: string;
+}
+
 const ProjectForm = ({ type, session, project }: Props) => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [previousImage, setPreviousImage] = useState<string | undefined>(project?.image);
   const [form, setForm] = useState({
     title: project?.title || '',
     description: project?.description || '',
@@ -27,9 +36,34 @@ const ProjectForm = ({ type, session, project }: Props) => {
     githubUrl: project?.githubUrl || '',
     category: project?.category || ''
   });
+  const [errors, setErrors] = useState<Partial<FormState>>({});
+
+  const validationRules: { [key in keyof FormState]: (value: string) => string | undefined } = {
+    title: (value) => (!value.trim() ? 'Title is required' : undefined),
+    description: (value) => (!value.trim() ? 'Description is required' : undefined),
+    liveSiteUrl: (value) => (!value.trim() ? 'Live Site URL is required' : undefined),
+    githubUrl: (value) => (!value.trim() ? 'GitHub URL is required' : undefined),
+    category: (value) => (!value.trim() ? 'Category is required' : undefined),
+  };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Validate the form
+    const newErrors: Partial<FormState> = {};
+    for(const field of Object.keys(validationRules)) {
+      const fieldName = field as keyof FormState;
+      const errorMessage = validationRules[fieldName](form[fieldName]);
+      if (errorMessage) {
+        newErrors[fieldName] = errorMessage;
+      }
+    }
+    setErrors(newErrors);
+
+    if(Object.keys(newErrors).length > 0) {
+      console.log('Form validation errors:', newErrors);
+      return;
+    }
+
     setIsSubmitting(true);
     const { token } = await fetchToken();
 
@@ -40,10 +74,11 @@ const ProjectForm = ({ type, session, project }: Props) => {
       }
 
       if(type === 'edit') {
-        await updateProject(form, project?.id as string, token);
+        await updateProject(form, project?.image as string, project?.id as string, token);
         router.push('/');
       }
     } catch (error) {
+      alert("ERROR : occured while uploading project")
       console.log(error);
     } finally {
       setIsSubmitting(false);
@@ -71,6 +106,12 @@ const ProjectForm = ({ type, session, project }: Props) => {
     setForm((prev) => ({
       ...prev,
       [fieldName]: value
+    }));
+
+    // Clear the error message for the field when it's changed
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [fieldName]: undefined,
     }));
   }
 
@@ -107,6 +148,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
         state={form.title}
         placeholder="Project Name"
         setState={(value: string) => handleStateChange('title', value)}
+        error={errors.title}
       />
 
       <FormField
@@ -116,6 +158,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
         placeholder="Enter description here"
         isTextArea
         setState={(value) => handleStateChange('description', value)}
+        error={errors.description}
       />
 
       <FormField
@@ -125,6 +168,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
         state={form.liveSiteUrl}
         placeholder="https://oweipadei.vercel.app"
         setState={(value) => handleStateChange('liveSiteUrl', value)}
+        error={errors.liveSiteUrl}
       />
 
       <FormField
@@ -134,6 +178,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
         state={form.githubUrl}
         placeholder="https://github.com/joshuaoweipadei"
         setState={(value) => handleStateChange('githubUrl', value)}
+        error={errors.githubUrl}
       />
 
       <CustomMenu 
@@ -141,6 +186,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
         state={form.category}
         filters={categoryFilters}
         setState={(value) => handleStateChange('category', value)}
+        error={errors.category}
       />
 
       <div className='flexStart w-full'>
@@ -151,6 +197,9 @@ const ProjectForm = ({ type, session, project }: Props) => {
             : `${type === 'create' ? 'Create' : 'Update'}`}
           leftIcon={isSubmitting ? '' : '/plus.svg'}
           isSubmitting={isSubmitting}
+          borderColor="bg-primary"
+          bgColor="bg-primary"
+          textColor="text-white"
         />
       </div>
     </form>

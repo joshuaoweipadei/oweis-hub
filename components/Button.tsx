@@ -9,7 +9,8 @@ type Props = {
   isSubmitting?: boolean | false,
   type?: 'button' | 'submit',
   bgColor?: string,
-  textColor?: string
+  textColor?: string,
+  borderColor?: string,
 }
 
 const Button = ({ 
@@ -21,14 +22,16 @@ const Button = ({
   handleClick,
   bgColor,
   textColor,
+  borderColor
 }: Props) => {
   return (
     <button
       type={type}
       disabled={isSubmitting || false}
       className={`flexCenter gap-3 px-4 py-3 
-      ${textColor ? textColor : 'text-white'} 
-      ${isSubmitting ? 'bg-black/50' : bgColor ? bgColor : 'bg-primary-purple'} rounded-xl text-sm font-medium max-md:w-full`}
+      ${textColor ? textColor : 'text-primary'} 
+      ${isSubmitting ? 'bg-primary/20' : bgColor ? bgColor : 'bg-white'} 
+      ${borderColor ? borderColor : 'border-2 border-primary'} rounded-xl text-sm font-medium max-md:w-full`}
       onClick={handleClick}
     >
       {leftIcon && <Image src={leftIcon} width={14} height={14} alt="left icon" />}

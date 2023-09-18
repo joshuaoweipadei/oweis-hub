@@ -1,7 +1,7 @@
 export const NavLinks = [
   { href: '/', key: 'Home', text: 'Home' },
-  { href: '/', key: 'About Author', text: 'About Author' },
-  { href: '/', key: 'Certificates', text: 'Certificates' },
+  { href: '/profile/user_01H9PQ125RRDA50BS8TZH4GXBD', key: 'Profile', text: 'Profile' },
+  // { href: '/', key: 'Certificates', text: 'Certificates' },
 ];
 
 export const categoryFilters = [
@@ -10,13 +10,7 @@ export const categoryFilters = [
   "Full-Stack",
   "Mobile",
   "UI/UX",
-  "Game Dev",
   "DevOps",
-  "Data Science",
-  "Machine Learning",
-  "Cybersecurity",
-  "Blockchain",
-  "E-commerce",
   "Chatbots"
 ]
 

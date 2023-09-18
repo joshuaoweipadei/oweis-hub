@@ -15,10 +15,10 @@ const Navbar = async () => {
       <div className='flex-1 flexStart gap-10'>
         <Link href="/">
           <Image 
-            src={"/logo.svg"}
-            width={115}
-            height={43}
-            alt='Showcaser'
+            src={"/logo-black.svg"}
+            width={155}
+            height={50}
+            alt='OweisHub'
           />
         </Link>
         <ul className='xl:flex hidden text-small gap-7'>
@@ -28,12 +28,12 @@ const Navbar = async () => {
         </ul>
       </div>
 
-      <div className='flexCenter gap-4'>
+      <div className='flexCenter gap-5'>
         {session?.user ? (
           <>
             <Link href={"/create-project"} className='flexCenter edit-action_btn gap-2'>
               <Image src="/plus-round.svg" width={15} height={15} alt="edit" />
-              <span>Post Project</span>
+              <span>Add Project</span>
             </Link>
 
             <ProfileMenu session={session} />

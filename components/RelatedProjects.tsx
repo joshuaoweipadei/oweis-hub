@@ -19,20 +19,20 @@ const RelatedProjects = async ({ userId, projectId }: Props) => {
   return (
     <section className="flex flex-col mt-32 w-full">
       <div className="flexBetween">
-        <p className="text-base font-bold">
-          More by {result?.user?.name}
-        </p>
+        <h3 className="text-base font-bold">
+          Related Projects by {result?.user?.name}
+        </h3>
         <Link
           href={`/profile/${result?.user?.id}`}
-          className="text-red-600 text-base"
+          className="text-blue-500 text-base hover:underline"
         >
           View All
         </Link>
       </div>
 
       <div className="related_projects-grid">
-        {filteredProjects?.map(({ node }: { node: ProjectInterface }) => (
-          <div className="flexCenter related_project-card drop-shadow">
+        {filteredProjects?.map(({ node }: { node: ProjectInterface }, index) => (
+          <div key={index} className="flexCenter related_project-card drop-shadow">
             <Link href={`/project/${node?.id}`} className="flexCenter group relative w-full h-full">
               <Image src={node?.image} width={414} height={314} className="w-full h-full object-cover rounded-2xl" alt="project image" />
 

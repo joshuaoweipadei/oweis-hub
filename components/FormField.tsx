@@ -8,6 +8,7 @@ type Props = {
   placeholder: string;
   isTextArea?: boolean;
   setState: (value: string) => void;
+  error?: string
 }
 
 const FormField = ({ 
@@ -18,9 +19,10 @@ const FormField = ({
   placeholder,
   isTextArea,
   setState,
+  error,
 }: Props) => {
   return (
-    <div className='flexStart flex-col w-full gap-2'>
+    <div className='flex justify-start items-start flex-col w-full gap-2'>
       <label htmlFor={id} className='w-full text-gray-100'>{title}</label>
       
       {isTextArea ? (
@@ -28,7 +30,7 @@ const FormField = ({
           id={id}
           placeholder={placeholder}
           value={state}
-          required
+          // required
           className='form_field-input'
           onChange={(e) => setState(e.target.value)}
         />
@@ -38,11 +40,12 @@ const FormField = ({
           type={type || 'text'}
           placeholder={placeholder}
           value={state}
-          required
+          // required
           className='form_field-input'
           onChange={(e) => setState(e.target.value)}
         />
       )}
+      {error && <div className="text-xs text-red-600">{error}</div>}
     </div>
   )
 }

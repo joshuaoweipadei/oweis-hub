@@ -37,7 +37,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
           </Link>
 
           <div className="flex-1 flexStart flex-col gap-1">
-            <p className="self-start text-lg font-semibold">
+            <p className="self-start text-lg font-semibold text-primary">
               {projectDetails?.title}
             </p>
             <div className="user-info">
@@ -45,7 +45,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
                 {projectDetails?.createdBy?.name}
               </Link>
               <Image src="/dot.svg" width={4} height={4} alt="dot" />
-              <Link href={`/?category=${projectDetails.category}`} className="text-red-600 font-medium underline"> 
+              <Link href={`/?category=${projectDetails.category}`} className="text-blue-500 font-medium hover:underline"> 
                 {projectDetails?.category}
               </Link>
             </div>
@@ -70,29 +70,32 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
       </section>
 
       <section className="flexCenter flex-col mt-20">
+        <h2 className="mb-3">Description</h2>
         <p className="max-w-5xl text-xl font-normal">
           {projectDetails?.description}
         </p>
 
         <div className="flex flex-wrap mt-5 gap-5">
-          <Link href={projectDetails?.githubUrl} target="_blank" rel="noreferrer" className="flexCenter gap-2 tex-sm font-medium text-primary-purple">
-            🖥 <span className="underline">Github</span> 
+          <Link href={projectDetails?.githubUrl} target="_blank" rel="noreferrer" className="flexCenter gap-2 tex-sm font-medium text-primary">
+            <Image src="/github.svg" width={20} height={20} alt="github" />
+            <span className="underline">Github</span> 
           </Link>
           <Image src="/dot.svg" width={4} height={4} alt="dot" />
-          <Link href={projectDetails?.liveSiteUrl} target="_blank" rel="noreferrer" className="flexCenter gap-2 tex-sm font-medium text-red-600">
-            🚀 <span className="underline">Live Site</span> 
+          <Link href={projectDetails?.liveSiteUrl} target="_blank" rel="noreferrer" className="flexCenter gap-2 tex-sm font-medium text-primary">
+            <Image src="/demo.svg" width={20} height={20} alt="eye" />
+            <span className="underline">Live Demo</span> 
           </Link>
         </div>
       </section>
 
       <section className="flexCenter w-full gap-8 mt-28">
         <span className="w-full h-0.5 bg-light-white-200" />
-        <Link href={renderLink()} className="min-w-[82px] h-[82px]">
+        <Link href={renderLink()} className="min-w-[82px] h-[20px]">
           <Image
-            src={projectDetails?.createdBy?.avatarUrl}
-            className="rounded-full"
+            src={"/logo.svg"}
+            className=""
             width={82}
-            height={82}
+            height={20}
             alt="profile image"
           />
         </Link>

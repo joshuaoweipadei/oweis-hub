@@ -32,7 +32,7 @@ const AuthProviders = () => {
     return (
       <div>
         {Object.values(providers).map((provider: Provider, index) => (
-          <Button key={index} title='Log in with Google' handleClick={() => signIn(provider?.id)} />
+          <Button key={index} title='Log in with Google' handleClick={() => signIn(provider?.id)} rightIcon="google.svg" />
         ))}
       </div>
     )

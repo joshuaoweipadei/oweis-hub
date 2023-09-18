@@ -52,7 +52,6 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
     projectsToDisplay = data?.projectCollection?.edges;
     pagination = data?.projectCollection.pageInfo;
   }
-  // console.log(endcursor, "endcursor")
 
   return (
     <section className="flex-start flex-col paddings mb-16">
@@ -60,7 +59,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
       
       {projectsToDisplay.length === 0 ? (
         <section className="flexStart flex-col paddings">
-          <p className="no-result-text text-center">No projects found, be the first to create a project.</p>
+          <p className="no-result-text text-center">No projects found in this category.</p>
         </section>
       ) : (
         <section className="projects-grid">
@@ -73,6 +72,8 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
               name={node?.createdBy.name}
               avatarUrl={node?.createdBy.avatarUrl}
               userId={node?.createdBy.id}
+              liveSiteUrl={node?.liveSiteUrl}
+              githubUrl={node?.githubUrl}
             />
           ))}
         </section>

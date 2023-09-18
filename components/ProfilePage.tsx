@@ -15,19 +15,30 @@ const ProfilePage = ({ user }: Props) => {
       <section className="flexBetween max-lg:flex-col gap-10 w-full">
         <div className='flex items-start flex-col w-full'>
           <Image src={user?.avatarUrl} width={150} height={150} className="rounded-full" alt="user image" />
-          <p className="text-3xl font-bold mt-10">{user?.name}</p>
-          <p className="md:text-5xl text-3xl font-extrabold md:mt-10 mt-5 max-w-lg"><span className='text-red-600'>Software Engineer</span> with almost 6 years of experience</p>
+          <p className="text-3xl font-bold mt-8">{user?.name}</p>
+          <p className="text-md font-light text-gray-100 mt-2">{user?.email}</p>
+          {user?.id === "user_01H9PQ125RRDA50BS8TZH4GXBD" && (
+            <p className="md:text-5xl text-3xl font-extrabold md:mt-8 mt-5 max-w-lg"><span className='text-primary'>Software Engineer</span> with almost 6 years of experience</p>
+          )}
           
           <div className="flex mt-8 gap-5 w-full flex-wrap">
-            <Link href={`/`}>
+            <Link href={`mailto:${user?.email}`}>
               <Button 
-                title="About Author" 
-                bgColor="bg-light-white-400 !w-max" 
-                textColor="text-black-100" 
+                title="Hire Me" 
+                leftIcon="/email.svg"
+                bgColor="bg-primary !w-max" 
+                textColor="text-white"
+                borderColor="transparent" 
               />
             </Link>
-            <Link href={`mailto:${user?.email}`}>
-              <Button title="Hire Me" leftIcon="/email.svg" />
+            <Link href={`${user?.githubUrl || "https://github.com/joshuaoweipadei"}`} target="_blank" rel="noopener noreferrer">
+              <Button 
+                title="GitHub" 
+                bgColor="bg-light-white-400 !w-max" 
+                textColor="text-black-100" 
+                borderColor="transparent" 
+                leftIcon={"/github.svg"}
+              />
             </Link>
           </div>
         </div>
@@ -42,7 +53,7 @@ const ProfilePage = ({ user }: Props) => {
           />
         ) : (
           <Image
-            src="/profile-post.png"
+            src="/ppp.png"
             width={739}
             height={554}
             alt="project image"
@@ -64,6 +75,8 @@ const ProfilePage = ({ user }: Props) => {
               name={user.name}
               avatarUrl={user.avatarUrl}
               userId={user.id}
+              liveSiteUrl={node.liveSiteUrl}
+              githubUrl={node.githubUrl}
             />
           ))}
         </div>

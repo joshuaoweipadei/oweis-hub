@@ -11,6 +11,8 @@ type Props = {
   name: string;
   avatarUrl: string;
   userId: string;
+  liveSiteUrl: string;
+  githubUrl: string;
 };
 
 const ProjectCard = ({ 
@@ -19,15 +21,17 @@ const ProjectCard = ({
   title, 
   name, 
   avatarUrl,
-  userId
+  userId,
+  liveSiteUrl,
+  githubUrl
 }: Props) => {
-  const [randomLikes, setRandomLikes] = useState(0);
-  const [randomViews, setRandomViews] = useState('');
+  // const [randomLikes, setRandomLikes] = useState(0);
+  // const [randomViews, setRandomViews] = useState('');
 
-  useEffect(() => {
-    setRandomLikes(Math.floor(Math.random() * 10000))
-    setRandomViews(String((Math.floor(Math.random() * 10000) / 1000).toFixed(1) + 'k'))
-  }, []);
+  // useEffect(() => {
+  //   setRandomLikes(Math.floor(Math.random() * 10000))
+  //   setRandomViews(String((Math.floor(Math.random() * 10000) / 1000).toFixed(1) + 'k'))
+  // }, []);
   
   return (
     <div className="flexCenter flex-col rounded-xl">
@@ -54,10 +58,10 @@ const ProjectCard = ({
               className="rounded-full"
               alt="profile image"
             />
-            <p>{name}</p>
+            <p className="font-semibold">{name}</p>
           </div>               
         </Link>
-        <div className="flexCenter gap-3">
+        {/* <div className="flexCenter gap-3">
           <div className="flexCenter gap-2">
             <Image src="/hearth.svg" width={13} height={12} alt="heart" />
             <p className="text-sm">{randomLikes}</p>
@@ -65,6 +69,16 @@ const ProjectCard = ({
           <div className="flexCenter gap-2">
             <Image src="/eye.svg" width={12} height={9} alt="eye" />
             <p className="text-sm">{randomViews}</p>
+          </div>
+        </div> */}
+        <div className="flexCenter gap-3">
+          <div className="flexCenter gap-1">
+            <Image src="/github.svg" width={13} height={12} alt="github" />
+            <p><Link href={githubUrl} className="text-xs text-primary">GitHub</Link></p>
+          </div>
+          <div className="flexCenter gap-1">
+            <Image src="/demo.svg" width={12} height={7} alt="eye" />
+            <p><Link href={liveSiteUrl} className="text-xs text-primary">Demo</Link></p>
           </div>
         </div>
       </div>

@@ -70,7 +70,7 @@ export const deleteProjectMutation = `
 
 export const projectCollectionQuery = `
 query Project($endcursor: String) {
-  projectCollection(first: 1, after: $endcursor) {
+  projectCollection(first: 15, after: $endcursor) {
     edges {
       node {
         title
@@ -100,7 +100,7 @@ query Project($endcursor: String) {
 
 export const projectsSearchQuery = `
   query getProjects($category: String, $endcursor: String) {
-    projectSearch(first: 1, after: $endcursor, filter: {category: {eq: $category}}) {
+    projectSearch(first: 15, after: $endcursor, filter: {category: {eq: $category}}) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -164,6 +164,8 @@ export const getProjectsOfUserQuery = `
             id
             title
             image
+            liveSiteUrl
+            githubUrl
           }
         }
       }

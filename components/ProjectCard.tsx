@@ -74,11 +74,11 @@ const ProjectCard = ({
         <div className="flexCenter gap-3">
           <div className="flexCenter gap-1">
             <Image src="/github.svg" width={13} height={12} alt="github" />
-            <p><Link href={githubUrl} className="text-xs text-primary">GitHub</Link></p>
+            <p><Link href={githubUrl} className="text-xs text-primary" target="_blank" rel="noreferrer">GitHub</Link></p>
           </div>
           <div className="flexCenter gap-1">
             <Image src="/demo.svg" width={12} height={7} alt="eye" />
-            <p><Link href={liveSiteUrl} className="text-xs text-primary">Demo</Link></p>
+            <p><Link href={liveSiteUrl} className="text-xs text-primary" target="_blank" rel="noreferrer">Demo</Link></p>
           </div>
         </div>
       </div>

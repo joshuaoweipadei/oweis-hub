@@ -9,7 +9,6 @@ export const categoryFilters = [
   "Backend",
   "Full-Stack",
   "Mobile",
-  "UI/UX",
   "DevOps",
   "Chatbots"
 ]

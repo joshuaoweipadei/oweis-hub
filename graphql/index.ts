@@ -158,7 +158,7 @@ export const getProjectsOfUserQuery = `
       avatarUrl
       githubUrl
       linkedInUrl
-      projects(last: $last) {
+      projects(last: $last, orderBy: { createdAt: DESC }) {
         edges {
           node {
             id

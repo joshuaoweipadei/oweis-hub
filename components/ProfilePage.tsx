@@ -17,7 +17,7 @@ const ProfilePage = ({ user }: Props) => {
           <Image src={user?.avatarUrl} width={150} height={150} className="rounded-full" alt="user image" />
           <p className="text-3xl font-bold mt-8">{user?.name}</p>
           <p className="text-md font-light text-gray-100 mt-2">{user?.email}</p>
-          {user?.id === "user_01H9PQ125RRDA50BS8TZH4GXBD" && (
+          {user?.id === "user_01HAMNQ6HMR08D7BNXN4NESKTM" && (
             <p className="md:text-5xl text-3xl font-extrabold md:mt-8 mt-5 max-w-lg"><span className='text-primary'>Software Engineer</span> with almost 6 years of experience</p>
           )}
           

@@ -1,6 +1,6 @@
 export const NavLinks = [
   { href: '/', key: 'Home', text: 'Home' },
-  { href: '/profile/user_01H9PQ125RRDA50BS8TZH4GXBD', key: 'Profile', text: 'Profile' },
+  { href: '/profile/user_01HAMNQ6HMR08D7BNXN4NESKTM', key: 'Profile', text: 'Profile' },
   // { href: '/', key: 'Certificates', text: 'Certificates' },
 ];
 

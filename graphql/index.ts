@@ -70,7 +70,7 @@ export const deleteProjectMutation = `
 
 export const projectCollectionQuery = `
 query Project($endcursor: String) {
-  projectCollection(first: 15, after: $endcursor) {
+  projectCollection(last: 15, after: $endcursor, orderBy: { createdAt: DESC }) {
     edges {
       node {
         title
@@ -171,4 +171,16 @@ export const getProjectsOfUserQuery = `
       }
     }
   }
+`;
+
+export const getProjectsTotalQuery = `
+query ProjectCollection {
+  projectCollection(last: 100) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}
 `;

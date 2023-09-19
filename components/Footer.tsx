@@ -1,12 +1,20 @@
+import { ProjectInterface } from '@/common.types';
+import { getProjectsTotal } from '@/lib/actions'
 import Image from 'next/image'
 // import Link from "next/link";
 
 // import { footerLinks } from "@/constants";
 
-type ColumnProps = {
-  title: string;
-  links: Array<string>;
-};
+// type ColumnProps = {
+//   title: string;
+//   links: Array<string>;
+// };
+
+type ProjectCollection = {
+  projectCollection: {
+    edges: { node: ProjectInterface }[];
+  },
+}
 
 // const FooterColumn = ({ title, links }: ColumnProps) => (
 //   <div className="footer_column">
@@ -17,7 +25,11 @@ type ColumnProps = {
 //   </div>
 // );
 
-const Footer = () => {
+const Footer = async () => {
+  const data = await getProjectsTotal() as ProjectCollection;
+
+  console.log(data)
+
   return (
     <section className='flexStart footer'>
       <div className='flex flex-col gap-12 w-full'>
@@ -56,7 +68,7 @@ const Footer = () => {
       <div className="flexBetween footer_copyright">
         <p>@ 2023 OweisHub. All rights reserved</p>
         <p className="text-gray">
-          <span className="text-black font-semibold">7</span> projects added
+          <span className="text-black font-semibold">{data?.projectCollection?.edges.length}</span> projects added
         </p>
       </div>
     </section>

@@ -45,7 +45,7 @@ const ProfilePage = ({ user }: Props) => {
 
         {user?.projects?.edges?.length > 0 ? (
           <Image
-            src={user?.projects?.edges[0]?.node?.image}
+            src={user?.projects?.edges[user?.projects?.edges?.length - 1]?.node?.image}
             alt="project image"
             width={739}
             height={554}

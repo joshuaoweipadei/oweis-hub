@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 import { ProjectForm } from "@/common.types";
-import { createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getUserQuery, projectCollectionQuery, projectsSearchQuery, updateProjectMutation } from "@/graphql";
+import { createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getProjectsTotalQuery, getUserQuery, projectCollectionQuery, projectsSearchQuery, updateProjectMutation } from "@/graphql";
 
 const isProduction = process.env.NODE_ENV === 'production';
 const apiUrl = isProduction ? process.env.NEXT_PUBLIC_GRAFBASE_API_URL || '' : 'http://127.0.0.1:4000/graphql';
@@ -131,6 +131,12 @@ export const deleteProject = (id: string, token: string) => {
   client.setHeader("Authorization", `Bearer ${token}`);
   return makeGraphQLRequest(deleteProjectMutation, { id });
 };
+
+// get all projects
+export const getProjectsTotal = () => {
+  client.setHeader('x-api-key', apiKey);
+  return makeGraphQLRequest(getProjectsTotalQuery, { });
+}
 
 // get all projects
 export const getAllProjects = (endcursor?: string) => {

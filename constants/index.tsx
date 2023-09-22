@@ -6,10 +6,8 @@ export const NavLinks = [
 
 export const categoryFilters = [
   "Frontend",
-  "Backend",
   "Full-Stack",
   "Mobile",
-  "DevOps",
   "Chatbots"
 ]
 
